@@ -1,0 +1,11 @@
+{
+  "type": "code",
+  "modid": "gasapi",
+  "name": "Atmospheric Overhaul",
+  "authors": ["jakecool19"],
+  "description": "Adds a gas system",
+  "version": "1.0.0",
+  "dependencies": {
+    "game": ""
+  }
+}

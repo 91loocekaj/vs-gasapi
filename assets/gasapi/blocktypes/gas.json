@@ -1,0 +1,35 @@
+{
+	code: "gas",
+  class: "BlockGas",
+	variantgroups: [
+		{ code: "type", states: ["methane", "carbondioxide", "carbonmonoxide", "hydrogensulfide", "nitrogendioxide", "hydrogen", "sulfurdioxide", "coaldust", "silicadust"] },
+	],
+	creativeinventory: { "general": ["*"] },
+	shapebytype: { base: "game:block/basic/cube" },
+	faceCullMode: "Merge",
+	blockmaterial: "Other",
+	rainpermeable: true,
+	textures: {
+		all: { baseByType: {
+			"*-methane": "game:block/glass/violet",
+			"*-carbonmonoxide": "game:block/glass/smoky",
+			"*-hydrogen": "game:block/glass/blue",
+			"*-carbondioxide": "game:block/glass/vintage",
+			"*-hydrogensulfide": "game:block/glass/green",
+			"*-nitrogendioxide": "game:block/glass/red",
+			"*-sulfurdioxide": "game:block/glass/yellow",
+			"*-coaldust": "game:block/glass/brown",
+			"*-silicadust": "game:block/glass/plain",
+			} },
+	},
+	renderpass: "transparent",
+	sidesolid : { all: false },
+	sideopaque: { all: false },
+	replaceable: 9600,
+	resistance: 0.1,
+	lightAbsorption: 0,
+	vertexFlags: {
+		zOffset: 7
+	},
+	drops: [],
+}

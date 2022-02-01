@@ -1,0 +1,75 @@
+{
+  "carbondioxide": {
+    "light" : false,
+    "plantAbsorb" : true
+  },
+  "carbonmonoxide": {
+    "light" : true,
+    "distribute": true,
+    "plantAbsorb" : true,
+    "suffocateAmount" : 0.1,
+    "effects": {
+      "airLoss" : 0.4,
+      "airRecovery" : -0.4
+    }
+  },
+  "methane": {
+    "light" : true,
+    "explosionAmount" : 0.17,
+    "flammableAmount" : 0.05,
+    "burnInto": "carbondioxide"
+  },
+  "hydrogen": {
+    "light" : true,
+    "explosionAmount" : 0.08,
+    "flammableAmount" : 0.04,
+    "burnInto": "carbondioxide"
+  },
+  "hydrogensulfide": {
+    "ventilateSpeed" : 0.25,
+    "plantAbsorb" : true,
+    "explosionAmount" : 0.12,
+    "suffocateAmount" : 0.25,
+    "flammableAmount" : 0.045,
+    "burnInto": "sulfurdioxide",
+    "effects": {
+      "walkspeed" : -0.2
+    }
+  },
+  "sulfurdioxide": {
+    "ventilateSpeed" : 1,
+    "acidic": true,
+    "suffocateAmount" : 0.2,
+    "effects": {
+      "armorDurabilityLoss" : 2,
+      "maxhealthExtraPoints" : -4
+    }
+  },
+  "nitrogendioxide": {
+    "ventilateSpeed" : 1,
+    "acidic": true,
+    "suffocateAmount" : 0.2,
+    "effects": {
+      "vulenrability" : 0.4,
+      "healingeffectivness" : -0.4
+    }
+  },
+  "coaldust": {
+    "ventilateSpeed" : 0.5,
+    "suffocateAmount" : 0.5,
+    "flammableAmount" : 0.1,
+    "burnInto": "carbondioxide",
+    "effects": {
+      "airRecovery" : -0.2,
+      "maxairExtraPoints" : -5
+    }
+  },
+  "silicadust": {
+    "ventilateSpeed" : 0.4,
+    "suffocateAmount" : 0.6,
+    "effects": {
+      "airRecovery" : -0.2,
+      "maxairExtraPoints" : -5
+    }
+  }
+}

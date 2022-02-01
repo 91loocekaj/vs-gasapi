@@ -1,0 +1,11 @@
+{
+  "gas-carbonmonoxide": "Carbon Monoxide",
+  "gas-carbondioxide": "Carbon Dioxide",
+  "gas-hydrogen": "Hydrogen",
+  "gas-hydrogensulfide": "Hydrogen Sulfide",
+  "gas-methane": "Methane",
+  "gas-nitrogendioxide": "Nitrogen Dioxide",
+  "gas-sulfurdioxide": "Sulfur Dioxide",
+  "gas-coaldust": "Coal Dust",
+  "gas-silicadust": "Silica Dust",
+}

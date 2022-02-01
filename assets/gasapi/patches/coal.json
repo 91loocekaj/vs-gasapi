@@ -1,0 +1,56 @@
+[
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+        "name" : "MineGas",
+        "properties" : {
+          "onRemove" : true,
+          "produceGas" : {
+            "coaldust" : 0.25
+          }
+        }
+      },
+    "file": "game:blocktypes/coalpile.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+        "name" : "PlaceGas",
+        "properties" : {
+          "produceGas" : {
+            "coaldust" : 0.25
+          }
+        }
+      },
+    "file": "game:blocktypes/coalpile.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors",
+    "value": [
+      {
+          "name" : "MineGas",
+          "properties" : {
+            "onRemove" : true,
+            "produceGas" : {
+              "coaldust" : 0.05
+            }
+          }
+        },
+        {
+            "name" : "PlaceGas",
+            "properties" : {
+              "produceGas" : {
+                "coaldust" : 0.25
+              }
+            }
+          },
+    ],
+    "file": "game:blocktypes/charcoalpile.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+]

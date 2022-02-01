@@ -1,0 +1,158 @@
+[
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "SparkGas"
+    },
+    "file": "game:blocktypes/stone/ore-gem.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "SparkGas"
+    },
+    "file": "game:blocktypes/stone/ore-graded.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "SparkGas"
+    },
+    "file": "game:blocktypes/stone/ore-ungraded.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "SparkGas"
+    },
+    "file": "game:blocktypes/stone/rock.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors",
+    "value": [
+      {"name": "SparkGas"}
+    ],
+    "file": "game:blocktypes/stone/stalagsection.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "MineGas",
+      "properties": {
+        "produceGas": { "silicadust": 0.025 }
+      }
+    },
+    "file": "game:blocktypes/stone/rock.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors",
+    "value": [
+      {
+        "name": "MineGas",
+        "properties": {
+          "produceGas": { "silicadust": 0.025 }
+        }
+      }
+    ],
+    "file": "game:blocktypes/stone/stalagsection.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "MineGas",
+      "properties": {
+        "produceGasByType": {
+          "*-bismuthinite-*": {"hydrogensulfide": 0.25},
+          "*-sphalerite-*": {"hydrogensulfide": 0.25},
+          "*-galena-*": {"hydrogensulfide": 0.25},
+          "*-pentlandite-*": {"hydrogensulfide": 0.25},
+          "*" : { "silicadust": 0.25 }
+        }
+      }
+    },
+    "file": "game:blocktypes/stone/ore-graded.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "ExplosionGas",
+      "properties": {
+        "produceGasByType": {
+          "*-bismuthinite-*": {"sulfurdioxide" : 0.375},
+          "*-sphalerite-*": {"sulfurdioxide" : 0.375},
+          "*-galena-*": {"sulfurdioxide" : 0.375},
+          "*-pentlandite-*": {"sulfurdioxide" : 0.375}
+        }
+      }
+    },
+    "file": "game:blocktypes/stone/ore-graded.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "MineGas",
+      "properties": {
+        "produceGasByType": {
+          "*-lignite-*": {"methane": 0.25, "coaldust": 0.5},
+          "*-bituminouscoal-*": {"methane": 0.375, "coaldust": 0.625},
+          "*-anthracite-*": {"methane": 0.375, "coaldust": 0.625},
+          "*-sulfur-*": {"sulfurdioxide": 0.625 },
+          "*-quartz-*" : { "silicadust": 0.5 },
+          "*" : { "silicadust": 0.25 }
+        }
+      }
+    },
+    "file": "game:blocktypes/stone/ore-ungraded.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors/-",
+    "value": {
+      "name": "ExplosionGas",
+      "properties": {
+        "produceGasByType": {
+          "*-lignite-*": { "carbonmonoxide": 0.25, "coaldust": 0.5, "carbondioxide": 0.25 },
+          "*-bituminouscoal-*": { "carbonmonoxide": 0.25, "coaldust": 0.5, "carbondioxide": 0.25 },
+          "*-anthracite-*": { "carbonmonoxide": 0.25, "coaldust": 0.5, "carbondioxide": 0.25 },
+          "*-sulfur-*": {"sulfurdioxide": 0.5}
+        }
+      }
+    },
+    "file": "game:blocktypes/stone/ore-ungraded.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+  {
+    "op": "add",
+    "path": "/behaviors",
+    "value": [
+      {
+        "name": "MineGas",
+        "properties": {
+          "produceGas": { "nitrogendioxide": 1 }
+        }
+      }
+    ],
+    "file": "game:blocktypes/stone/saltpeter.json",
+    "condition": { "when": "GAgasesEnabled", "isValue": "true" }
+  },
+]

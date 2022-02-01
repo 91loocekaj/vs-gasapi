@@ -1,0 +1,94 @@
+[
+  {
+    "op": "add",
+    "path": "/attributes/gassysSolidSidesByType",
+    "value": {
+      "*-plank-west-*-closed-*": {
+        "east": true
+      },
+      "*-plank-east-*-closed-*": {
+        "west": true
+      },
+      "*-plank-north-*-closed-*": {
+        "south": true
+      },
+      "*-plank-south-*-closed-*": {
+        "north": true
+      },
+      "*-plank-west-*-opened-left": {
+        "north": true
+      },
+      "*-plank-west-*-opened-right": {
+        "south": true
+      },
+      "*-plank-east-*-opened-left": {
+        "south": true
+      },
+      "*-plank-east-*-opened-right": {
+        "north": true
+      },
+      "*-plank-south-*-opened-left": {
+        "west": true
+      },
+      "*-plank-south-*-opened-right": {
+        "east": true
+      },
+      "*-plank-north-*-opened-left": {
+        "east": true
+      },
+      "*-plank-north-*-opened-right": {
+        "west": true
+      }
+    },
+    "file": "game:blocktypes/wood/door.json"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/gassysSolidSidesByType",
+    "value": {
+      "*-closed-up-*": {
+        "down": true
+      },
+      "*-closed-down-*": {
+        "up": true
+      },
+      "*-opened-*-north": {
+        "north": true
+      },
+      "*-opened-*-south": {
+        "south": true
+      },
+      "*-opened-*-east": {
+        "east": true
+      },
+      "*-opened-*-west": {
+        "west": true
+      },
+      "*-closed-right-north": {
+        "east": true
+      },
+      "*-closed-left-south": {
+        "west": true
+      },
+      "*-closed-right-south": {
+        "east": true
+      },
+      "*-closed-left-north": {
+        "west": true
+      },
+      "*-closed-right-east": {
+        "south": true
+      },
+      "*-closed-left-west": {
+        "north": true
+      },
+      "*-closed-right-west": {
+        "south": true
+      },
+      "*-closed-left-east": {
+        "north": true
+      }
+    },
+    "file": "game:blocktypes/wood/trapdoor.json"
+  }
+]
