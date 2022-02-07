@@ -97,7 +97,7 @@ The attributes can give certain blocks special gas related properties
 - "gassysPlant": true // If this exists the gas spread event will ignore its block material check and instead check this to see if it is a plant.
 
 ## Code Side (C#)
-Due to the new system using primitive data in stored in chunk data that any mod can access, it is not neccessary to make this mod a hard depedency.
+Due to the new system using primitive data in stored in chunk data that any mod can access, it is not neccessary to make this mod a hard depedency. Best practice to use this library, is to copy and paste the [GasHelper class](GasHelper.cs) into your own name space. Then retrieve it with ICoreAPI.Modloader.GetModSystem and use it like any other mod system.
 
 ### Data Storage
 Gas data is stored in the chunk mod data in the key "gases". For a chunk it is a Dictionary<int, Dictionary<string, float>>. The key is the local block position index and the values are the gas dictionary for the particular block position. Modifying, adding, and deleting data should all occur server side, and then should be synced on the client. No editing should happen on the client.
