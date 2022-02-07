@@ -22,9 +22,9 @@
 
         public int DefaultSpreadRadius { get; set; } = 7;
 
-        public bool SpreadGasOnBreak { get; set; } = true;
+        public float SpreadGasOnBreakChance { get; set; } = 1;
 
-        public bool SpreadGasOnPlace { get; set; } = false;
+        public float SpreadGasOnPlaceChance { get; set; } = 0;
 
         public float UpdateSpreadGasChance { get; set; } = 0.01f;
 
@@ -40,7 +40,7 @@
 
         public bool GasesEnabled { get; set; } = true;
 
-        public bool GasesDebugEnabled { get; set; } = true;
+        public bool GasesDebugEnabled { get; set; } = false;
 
         public bool BreathingEnabled { get; set; } = true;
 

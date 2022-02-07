@@ -33,7 +33,7 @@ namespace GasApi
         {
             base.OnBlockRemoved(world, pos, ref handling);
 
-            if (world.Side != EnumAppSide.Server || !GasConfig.Loaded.SpreadGasOnBreak || block.GetBehavior<BlockBehaviorMineGas>() != null) return;
+            if (world.Side != EnumAppSide.Server || block.GetBehavior<BlockBehaviorMineGas>() != null || world.Rand.NextDouble() > GasConfig.Loaded.SpreadGasOnBreakChance) return;
 
             GasSystem gasHandler = world.Api.ModLoader.GetModSystem<GasSystem>();
 
@@ -44,7 +44,7 @@ namespace GasApi
         {
             base.OnBlockPlaced(world, blockPos, ref handling);
 
-            if (world.Side != EnumAppSide.Server || !GasConfig.Loaded.SpreadGasOnPlace) return;
+            if (world.Side != EnumAppSide.Server || world.Rand.NextDouble() > GasConfig.Loaded.SpreadGasOnPlaceChance) return;
 
             GasSystem gasHandler = world.Api.ModLoader.GetModSystem<GasSystem>();
 
@@ -55,7 +55,7 @@ namespace GasApi
         {
             base.OnNeighbourBlockChange(world, pos, neibpos, ref handling);
 
-            if (world.Rand.NextDouble() <= GasConfig.Loaded.UpdateSpreadGasChance)
+            if (world.Side == EnumAppSide.Server && world.Rand.NextDouble() <= GasConfig.Loaded.UpdateSpreadGasChance)
             {
                 world.Api.ModLoader.GetModSystem<GasSystem>()?.QueueGasExchange(null, pos);
             }

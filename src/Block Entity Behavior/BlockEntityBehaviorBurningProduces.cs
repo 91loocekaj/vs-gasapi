@@ -54,7 +54,8 @@ namespace GasApi
                 (Blockentity as BlockEntityForge)?.IsBurning == true ||
                 (Blockentity as BlockEntityBloomery)?.IsBurning == true ||
                 (Blockentity as BlockEntityCoalPile)?.IsBurning == true ||
-                (Blockentity as BlockEntityTorch)?.Block.LastCodePart(1) == "lit" ||
+                (Blockentity as BlockEntityTorch)?.Block.LightHsv?[2] > 0 ||
+                (Blockentity as BlockEntityTorchHolder)?.Block.LightHsv?[2] > 0 ||
                 (Blockentity as BlockEntityPitKiln)?.Lit == true ||
                 (Blockentity as BlockEntityCharcoalPit)?.Lit == true ||
                 (Blockentity as BlockEntityBoiler)?.IsBurning == true ||

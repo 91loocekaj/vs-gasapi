@@ -200,4 +200,51 @@ namespace GasApi
         }
     }
 
+    [HarmonyPatch(typeof(EntityBehaviorHealth))]
+    public class HeavyHitsStat
+    {
+        [HarmonyPrepare]
+        static bool Prepare()
+        {
+            return true;
+        }
+
+        [HarmonyPatch("Initialize")]
+        [HarmonyPostfix]
+        static void DefenseBonus(EntityBehaviorHealth __instance)
+        {
+            __instance.onDamaged += (dmg, source) => { return dmg + (__instance.entity.Stats.GetBlended("heavyHits") - 1); };
+        }
+    }
+
+    [HarmonyPatch(typeof(Entity))]
+    public class EntityBurn
+    {
+        [HarmonyPrepare]
+        static bool Prepare(MethodBase original, Harmony harmony)
+        {
+            //From Melchoir
+            if (original != null)
+            {
+                foreach (var patched in harmony.GetPatchedMethods())
+                {
+                    if (patched.Name == original.Name) return false;
+                }
+            }
+
+            return true;
+        }
+
+        [HarmonyPatch("ReceiveDamage")]
+        [HarmonyPrefix]
+        static void Burn(Entity __instance, DamageSource damageSource)
+        {
+            if (damageSource?.Source != EnumDamageSource.Explosion) return;
+            if (GasConfig.Loaded.FlammableGas && __instance.Api.ModLoader.GetModSystem<GasSystem>().IsVolatile(__instance.ServerPos.AsBlockPos))
+            {
+                __instance.Ignite();
+            }
+        }
+    }
+
 }

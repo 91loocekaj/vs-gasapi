@@ -6,12 +6,16 @@ using Vintagestory.API.Datastructures;
 using Vintagestory.API.MathTools;
 using Vintagestory.API.Util;
 using Vintagestory.API.Server;
+using Vintagestory.API.Config;
 
 namespace GasApi
 {
     public class GasHelper : ModSystem
     {
         private ICoreAPI api;
+
+        //DO NOT CHANGE, if this number does not match up to one on Gas API github this helper is outdated
+        const double VersionNumber = 1.0;
 
         public override void Start(ICoreAPI papi)
         {
@@ -33,8 +37,10 @@ namespace GasApi
 
         static Dictionary<string, GasInfoLite> LiteGasDict;
 
+        //Returns the gases for the entire chunk; Does not create gases or chunk data
         public Dictionary<int, Dictionary<string, float>> GetGasesForChunk(BlockPos pos)
         {
+            if (!api.ModLoader.IsModEnabled("gasapi")) return null;
             byte[] data;
 
             IWorldChunk chunk = api.World.BlockAccessor.GetChunkAtBlockPos(pos);
@@ -59,8 +65,10 @@ namespace GasApi
             return gasesOfChunk;
         }
 
+        //Returns the gases for the entire chunk; Does not create gases or chunk data
         public Dictionary<int, Dictionary<string, float>> GetGasesForChunk(IWorldChunk chunk)
         {
+            if (!api.ModLoader.IsModEnabled("gasapi")) return null;
             byte[] data;
 
             if (chunk == null) return null;
@@ -84,8 +92,10 @@ namespace GasApi
             return gasesOfChunk;
         }
 
+        //Returns gases for a particular block position
         public Dictionary<string, float> GetGases(BlockPos pos)
         {
+            if (!api.ModLoader.IsModEnabled("gasapi")) return null;
             Dictionary<int, Dictionary<string, float>> gasesOfChunk = GetGasesForChunk(pos);
             if (gasesOfChunk == null) return null;
 
@@ -95,8 +105,10 @@ namespace GasApi
             return gasesOfChunk[index3d];
         }
 
+        //Returns the amount of the specified gas at a position if it is present
         public float GetGas(BlockPos pos, string name)
         {
+            if (!api.ModLoader.IsModEnabled("gasapi")) return 0;
             Dictionary<string, float> gasesHere = GetGases(pos);
 
             if (gasesHere == null || !gasesHere.ContainsKey(name)) return 0;
@@ -104,18 +116,21 @@ namespace GasApi
             return gasesHere[name];
         }
 
-        public void SendGasSpread(BlockPos pos, Dictionary<string, float> gases, bool mainThread = false)
+        //Serializes and sends a gas spread event on the bus
+        public void SendGasSpread(BlockPos pos, Dictionary<string, float> gases = null)
         {
-            System.Diagnostics.Debug.WriteLine(api.Side);
-            (api as ICoreServerAPI)?.Event.PushEvent(mainThread ? "spreadGasMain" : "spreadGas", SerializeGasTreeData(pos, gases));
+            if (!api.ModLoader.IsModEnabled("gasapi") || api.Side != EnumAppSide.Server) return;
+            (api as ICoreServerAPI)?.Event.PushEvent("spreadGas", SerializeGasTreeData(pos, gases));
         }
 
+        //Serializes a gas spreading event
         public TreeAttribute SerializeGasTreeData(BlockPos pos, Dictionary<string, float> gases)
         {
-            if (pos == null ) return null;
+            if (!api.ModLoader.IsModEnabled("gasapi")) return null;
+            if (pos == null) return null;
 
             TreeAttribute tree = new TreeAttribute();
-            
+
             tree.SetBlockPos("pos", pos);
 
             if (gases != null && gases.Count > 0)
@@ -133,6 +148,7 @@ namespace GasApi
             return tree;
         }
 
+        //Deserializes a gas spreading event
         public static Dictionary<string, float> DeserializeGasTreeData(IAttribute data, out BlockPos pos)
         {
             TreeAttribute tree = data as TreeAttribute;
@@ -150,7 +166,7 @@ namespace GasApi
                 {
                     float? value = gases.TryGetFloat(gas.Key);
                     if (value == null) continue;
-                    
+
                     dGases.Add(gas.Key, (float)value);
                 }
             }
@@ -158,6 +174,7 @@ namespace GasApi
             return dGases;
         }
 
+        //Cleanly merges a gas into an already existing gas dictionary
         public static void MergeGasIntoDict(string gasName, float gasValue, ref Dictionary<string, float> dest)
         {
             if (gasName == null || gasValue == 0 || dest == null) return;
@@ -172,6 +189,7 @@ namespace GasApi
             }
         }
 
+        //Cleanly merges two gas dictionaries together
         public static void MergeGasDicts(Dictionary<string, float> source, ref Dictionary<string, float> dest)
         {
             if (source == null || dest == null) return;
@@ -187,8 +205,10 @@ namespace GasApi
             }
         }
 
+        //Returns the air quality for this position, ranging from 1 to -1. Postive values allow breathing, negative values suffocate
         public float GetAirAmount(BlockPos pos)
         {
+            if (!api.ModLoader.IsModEnabled("gasapi")) return 1;
             Dictionary<string, float> gasesHere = GetGases(pos);
 
             if (gasesHere == null) return 1;
@@ -209,8 +229,10 @@ namespace GasApi
             return 1 - conc;
         }
 
+        //Returns the aciditiy for an area between 0 and 1
         public float GetAcidity(BlockPos pos)
         {
+            if (!api.ModLoader.IsModEnabled("gasapi")) return 0;
             Dictionary<string, float> gasesHere = GetGases(pos);
 
             if (gasesHere == null) return 0;
@@ -229,8 +251,10 @@ namespace GasApi
             return conc;
         }
 
+        //Returns whether there is a flammable amount of gas at this position
         public bool IsVolatile(BlockPos pos)
         {
+            if (!api.ModLoader.IsModEnabled("gasapi")) return false;
             Dictionary<string, float> gasesHere = GetGases(pos);
 
             if (gasesHere == null) return false;
@@ -246,8 +270,10 @@ namespace GasApi
             return false;
         }
 
+        //Returns whether there is enough explosive gas here to explode
         public bool ShouldExplode(BlockPos pos)
         {
+            if (!api.ModLoader.IsModEnabled("gasapi")) return false;
             Dictionary<string, float> gasesHere = GetGases(pos);
 
             if (gasesHere == null) return false;
@@ -263,15 +289,21 @@ namespace GasApi
             return false;
         }
 
+        //Determines if there is enough of the gas to be toxic
         public bool IsToxic(string name, float amount)
         {
+            if (!api.ModLoader.IsModEnabled("gasapi")) return false;
             if (!LiteGasDict.ContainsKey(name)) return true;
 
             return amount > LiteGasDict[name].ToxicAt;
         }
 
+        //Collects gases and voids them in the world and returns them as a table
+        //Note: Because this happens on the main thread and gas spreading happens on an off thread, it may be somewhat inaccurate
         public Dictionary<string, float> CollectGases(BlockPos pos, int radius, string[] gasFilter)
         {
+            if (!api.ModLoader.IsModEnabled("gasapi") || api.Side != EnumAppSide.Server) return null;
+            
             IBlockAccessor blockAccessor = api.World.BlockAccessor;
             if (pos.Y < 1 || pos.Y > blockAccessor.MapSizeY) return null;
 
@@ -351,7 +383,7 @@ namespace GasApi
                     if (!blocks.TryGetValue(blockId, out atPos)) atPos = blocks[blockId] = blockAccessor.GetBlock(blockId);
 
                     if (SolidCheck(atPos, facing.Opposite)) continue;
-                    
+
                     if (gasChunks[curChunkVec] != null && gasChunks[curChunkVec].ContainsKey(chunkBid))
                     {
                         Dictionary<string, float> gasesHere = gasChunks[curChunkVec][chunkBid];
@@ -380,6 +412,15 @@ namespace GasApi
             return result;
         }
 
+        //Returns the display name of the gas if it has one
+        public static string GetGasDisplayName(string gas)
+        {
+            string results = Lang.GetIfExists("gasapi:gas-" + gas);
+
+            return results == null ? gas : results;
+        }
+
+        //Returns whether the block face is solid
         public bool SolidCheck(Block block, BlockFacing face)
         {
             if (block.Attributes?.KeyExists("gassysSolidSides") == true)
@@ -390,11 +431,14 @@ namespace GasApi
             return block.SideSolid[face.Index];
         }
 
+        //Gives the local index for a block in its chunk
         int toLocalIndex(BlockPos pos)
         {
-            return MapUtil.Index3d(pos.X % 32, pos.Y % 32, pos.Z % 32, 32, 32);
+            return MapUtil.Index3d(pos.X % api.World.BlockAccessor.ChunkSize, pos.Y % api.World.BlockAccessor.ChunkSize, pos.Z % api.World.BlockAccessor.ChunkSize, api.World.BlockAccessor.ChunkSize, api.World.BlockAccessor.ChunkSize);
         }
 
+
+        //Internal class used to get the gas information from the config.
         [JsonObject(MemberSerialization.OptIn)]
         public class GasInfoLite
         {

@@ -101,6 +101,8 @@ namespace GasApi
         {
             if (!entity.Alive) return;
 
+            UpdateMaxAir();
+
             if (GasConfig.Loaded.ToxicEffects) HandleEffects(deltaTime);
 
             //Exhaling
@@ -282,13 +284,13 @@ namespace GasApi
 
             if (mask == null || mask.Collectible.GetDurability(mask) <= 0 || mask.ItemAttributes == null) return false;
 
-            if (GasConfig.Loaded.AllowScuba && mask.ItemAttributes.IsTrue("scubaMask"))
+            if (GasConfig.Loaded.AllowScuba && mask.ItemAttributes.IsTrue("gassysScubaMask"))
             {
                 IInventory backpacks = inv.GetOwnInventory(GlobalConstants.backpackInvClassName);
                 if (backpacks != null && backpacks.Count >= 6)
                 {
                     ItemStack gastank = backpacks[5].Itemstack;
-                    if (gastank != null && gastank.ItemAttributes != null && gastank.ItemAttributes.IsTrue("scubaTank") && gastank.Collectible.GetDurability(gastank) > 0)
+                    if (gastank != null && gastank.ItemAttributes != null && gastank.ItemAttributes.IsTrue("gassysScubaTank") && gastank.Collectible.GetDurability(gastank) > 0)
                     {
                         return true;
                     }
@@ -297,7 +299,7 @@ namespace GasApi
 
             if (GasConfig.Loaded.AllowMasks)
             {
-                string[] gasProt = mask.ItemAttributes["gasMaskProtection"].AsArray<string>();
+                string[] gasProt = mask.ItemAttributes["gassysGasMaskProtection"].AsArray<string>();
 
                 if (gasProt == null || !gasProt.Contains(name)) return false;
 
@@ -317,13 +319,13 @@ namespace GasApi
 
             if (mask == null || mask.Collectible.GetDurability(mask) <= 0 || mask.ItemAttributes == null) return false;
 
-            if (mask.ItemAttributes.IsTrue("scubaMask"))
+            if (mask.ItemAttributes.IsTrue("gassysScubaMask"))
             {
                 IInventory backpacks = inv.GetOwnInventory(GlobalConstants.backpackInvClassName);
                 if (backpacks != null && backpacks.Count >= 6)
                 {
                     ItemStack gastank = backpacks[5].Itemstack;
-                    if (gastank != null && gastank.ItemAttributes != null && gastank.ItemAttributes.IsTrue("scubaTank") && gastank.Collectible.GetDurability(gastank) > 0)
+                    if (gastank != null && gastank.ItemAttributes != null && gastank.ItemAttributes.IsTrue("gassysScubaTank") && gastank.Collectible.GetDurability(gastank) > 0)
                     {
                         return true;
                     }

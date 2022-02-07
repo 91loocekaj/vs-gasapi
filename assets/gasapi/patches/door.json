@@ -46,6 +46,49 @@
     "op": "add",
     "path": "/attributes/gassysSolidSidesByType",
     "value": {
+      "*-west-*-closed-*": {
+        "east": true
+      },
+      "*-east-*-closed-*": {
+        "west": true
+      },
+      "*-north-*-closed-*": {
+        "south": true
+      },
+      "*-south-*-closed-*": {
+        "north": true
+      },
+      "*-west-*-opened-left": {
+        "north": true
+      },
+      "*-west-*-opened-right": {
+        "south": true
+      },
+      "*-east-*-opened-left": {
+        "south": true
+      },
+      "*-east-*-opened-right": {
+        "north": true
+      },
+      "*-south-*-opened-left": {
+        "west": true
+      },
+      "*-south-*-opened-right": {
+        "east": true
+      },
+      "*-north-*-opened-left": {
+        "east": true
+      },
+      "*-north-*-opened-right": {
+        "west": true
+      }
+    },
+    "file": "game:blocktypes/metal/irondoor.json"
+  },
+  {
+    "op": "add",
+    "path": "/attributes/gassysSolidSidesByType",
+    "value": {
       "*-closed-up-*": {
         "down": true
       },

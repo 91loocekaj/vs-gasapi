@@ -89,10 +89,10 @@
     <Compile Include="src\Block\BlockGas.cs" />
     <Compile Include="src\Entity Behavior\EntityBehaviorAir.cs" />
     <Compile Include="src\GasConfig.cs" />
-    <Compile Include="src\System Control\GasHelper.cs" />
     <Compile Include="src\System Control\ChunkGasData.cs" />
     <Compile Include="src\Entity Behavior\EntityBehaviorGas.cs" />
     <Compile Include="src\System Control\GasChunk.cs" />
+    <Compile Include="src\For Other Mods\GasHelper.cs" />
     <Compile Include="src\System Control\GasInfo.cs" />
     <Compile Include="src\GasSystem.cs" />
     <Compile Include="src\GUI\HudElementAirBar.cs" />

@@ -1,0 +1,11 @@
+[
+  {
+    "op": "add",
+    "path": "/attributes/gassysAntiCorrosionByType",
+    "value": {
+      "*-gold": true,
+      "*-silver": true
+    },
+    "file": "game:itemtypes/wearable/armor.json"
+  }
+]

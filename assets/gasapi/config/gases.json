@@ -9,7 +9,8 @@
     "plantAbsorb" : true,
     "suffocateAmount" : 0.1,
     "effects": {
-      "airLoss" : 0.4,
+      "airLoss" : 0.2,
+      "maxairExtraPoints" : -5,
       "airRecovery" : -0.4
     }
   },
@@ -31,45 +32,54 @@
     "explosionAmount" : 0.12,
     "suffocateAmount" : 0.25,
     "flammableAmount" : 0.045,
+    "toxicAt": 0.1,
     "burnInto": "sulfurdioxide",
     "effects": {
-      "walkspeed" : -0.2
+      "walkspeed" : -0.2,
+      "miningSpeedMul" : -0.5,
+      "rangedWeaponsDamage": -0.2,
+      "meleeWeaponsDamage": -0.2
     }
   },
   "sulfurdioxide": {
-    "ventilateSpeed" : 1,
+    "ventilateSpeed" : 0.5,
     "acidic": true,
     "suffocateAmount" : 0.2,
+    "toxicAt": 0.01,
     "effects": {
       "armorDurabilityLoss" : 2,
-      "maxhealthExtraPoints" : -4
+      "maxhealthExtraPoints" : -2
     }
   },
   "nitrogendioxide": {
-    "ventilateSpeed" : 1,
+    "ventilateSpeed" : 0.5,
     "acidic": true,
     "suffocateAmount" : 0.2,
+    "toxicAt": 0.01,
     "effects": {
-      "vulenrability" : 0.4,
+      "heavyHits" : 2,
       "healingeffectivness" : -0.4
     }
   },
   "coaldust": {
-    "ventilateSpeed" : 0.5,
+    "ventilateSpeed" : 0.1,
     "suffocateAmount" : 0.5,
     "flammableAmount" : 0.1,
+    "explosionAmount" : 0.9,
+    "toxicAt": 0.25,
     "burnInto": "carbondioxide",
     "effects": {
-      "airRecovery" : -0.2,
-      "maxairExtraPoints" : -5
+      "airLoss" : 0.25,
+      "airRecovery" : -0.25
     }
   },
   "silicadust": {
-    "ventilateSpeed" : 0.4,
+    "ventilateSpeed" : 0.1,
     "suffocateAmount" : 0.6,
+    "toxicAt": 0.3,
     "effects": {
-      "airRecovery" : -0.2,
-      "maxairExtraPoints" : -5
+      "airLoss" : 0.25,
+      "airRecovery" : -0.25
     }
   }
 }

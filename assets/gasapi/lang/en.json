@@ -8,4 +8,37 @@
   "gas-sulfurdioxide": "Sulfur Dioxide",
   "gas-coaldust": "Coal Dust",
   "gas-silicadust": "Silica Dust",
+
+  "block-gas-carbonmonoxide": "Carbon Monoxide",
+  "block-gas-carbondioxide": "Carbon Dioxide",
+  "block-gas-hydrogen": "Hydrogen",
+  "block-gas-hydrogensulfide": "Hydrogen Sulfide",
+  "block-gas-methane": "Methane",
+  "block-gas-nitrogendioxide": "Nitrogen Dioxide",
+  "block-gas-sulfurdioxide": "Sulfur Dioxide",
+  "block-gas-coaldust": "Coal Dust",
+  "block-gas-silicadust": "Silica Dust",
+
+  "breathguide-title": "Breathing Guide",
+  "breathguide-text": "<strong>How To Breathe</strong>
+Gases and particles exist all around you and while some are common and harmless others are extremely dangerous to be exposed to and can quickly kill you.
+
+<strong>Tips & Tricks</strong>
++ Avoid making narrow mineshafts, try to keep them wide and spacious and make holes in the floor and the ceiling to collect dangerous gases. Especially when coal mining!
++ Make sure to have a chimney or open windows in your house if you burn things inside, or open the door every once in a while.
++ Making the air unbreathable will keep your food fresher for longer
++ Explosive gases can be set off by torches and oil lamps in hand, burning creatures, burning blocks, and also has a chance to go off with a spark from a pickaxe. Lanterns do not ignite gas so try to get them asap.
++ On average, most creatures can hold their breath for 15 seconds, however this is can be shortened by the toxic effects of gases like carbon monoxide.
++ Acidic liquids will eat away at most armor, except for gold and silver.
+
+<strong>Types of Gases</strong>
++ Carbon Dioxide: One of the most abundant gases, it is exhaled by breathing living things, and a common product of combustion. It is heavier than air and is absorbed by plants.
++ Carbon Monoxide: While being absorbed by plants and a byproduct of combustion, it is the polar opposite of it’s cousin carbon dioxide, carbon monoxide is extremely dangerous and can cause rapid asphyxiation at concentrations as little as 10%. Its toxic effects likewise further restrict the ability to breath, plus it is near the same density as air so it evenly distributes in a space. In an enclosed, poorly ventilated space, it can kill in seconds.
++ Silica Dust: Lots of this can get in the air when breaking rock or quartz. Makes it hard to catch your breath and takes a bit of wind to get rid of.
++ Coal Dust: Lots of this gets in the air when mining coal or messing with charcoal. Makes it hard to catch your breath and it is flammable and explosive in very high concentrations. Takes a bit of wind to get rid of.
++ Hydrogen Sulfide: A heavy gas produced when mining sulfide ores, while known for its repulsive odor at small concentrations it can be extremely toxic, flammable, and explosive at high concentrations. Its toxic effects cause sluggishness, reducing movement and mining, and making it hard to deal damage in combat. Can be absorbed by plants and takes a fair amount of wind to get rid of.
++ Sulfur Dioxide: A heavy gas produced when blowing up sulfide ores or burning hydrogen sulfide, this gas is toxic and acidic and can cause armor to take greater damage and lower your health. When dissolved in water, it will lower its pH, making it corrosive to armor and can even burn creatures at high concentrations in water. Takes a lot of wind to get rid of it.
++ Nitrogen Dioxide: A heavy gas produced from explosions and mining saltpeter, this gas is toxic and acidic and can cause you to take increased damage and weakens your body’s ability to heal. When dissolved in water, it will lower its pH, making it corrosive to armor and can even burn creatures at high concentrations in water. Takes a lot of wind to get rid of it.
++ Methane: An extremely explosive and light gas, often found when mining coal, this gas is a leading cause of coal mine explosions.
+",
 }

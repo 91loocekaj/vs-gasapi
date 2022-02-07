@@ -53,6 +53,7 @@ namespace GasApi
             }
 
             statbar.SetMinMax(0, max);
+            statbar.SetLineInterval(1);
 
             if (air != null && current != statbar.GetValue())
             {

@@ -33,7 +33,7 @@ namespace GasApi
             if (Api.Side != EnumAppSide.Server) return;
 
             BlockEntityPlantContainer bpc = Blockentity as BlockEntityPlantContainer;
-            if (bpc == null) return;
+            if (bpc == null || Api.World.BlockAccessor.GetLightLevel(Blockentity.Pos, EnumLightLevelType.TimeOfDaySunLight) < 13) return;
 
             if (bpc.Inventory[0].Empty || bpc.Inventory[0].Itemstack.Block?.BlockMaterial != EnumBlockMaterial.Plant || bpc.Inventory[0].Itemstack.Collectible.Code.Path.StartsWith("mushroom")) return;
 

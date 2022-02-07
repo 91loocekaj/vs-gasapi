@@ -841,7 +841,7 @@ namespace GasApi
                         if (!blocks.TryGetValue(blockId, out atPos)) atPos = blocks[blockId] = blockAccessor.GetBlock(blockId);
 
                         if (!ignoreCheck && SolidCheck(atPos, facing.Opposite)) continue;
-                        bool mediumComp = ignoreLiquid || (parent.IsLiquid() && atPos.IsLiquid()) || (!parent.IsLiquid() && !atPos.IsLiquid());
+                        bool mediumComp = ignoreLiquid || !atPos.IsLiquid() || (parent.IsLiquid() && atPos.IsLiquid());
                         if (!mediumComp) continue;
 
                         //Confirmed this is a valid pos, now check other things
@@ -863,12 +863,12 @@ namespace GasApi
                 //Finished getting positions, now deal with gases
                 Dictionary<string, float> modifier = new Dictionary<string, float>(collectedGases);
 
-                //Convert gases to there burn end point, if this is an explosion
+                //Convert gases to their burned state, if this is an explosion
                 if (combusted)
                 {
                     foreach (var gas in collectedGases)
                     {
-                        if (GasDictionary.ContainsKey(gas.Key) && (gas.Value >= GasDictionary[gas.Key].FlammableAmount || gas.Value >= GasDictionary[gas.Key].ExplosionAmount))
+                        if (GasDictionary.ContainsKey(gas.Key) && (GasDictionary[gas.Key].FlammableAmount <= 1 || GasDictionary[gas.Key].ExplosionAmount <= 1))
                         {
                             if (GasDictionary[gas.Key].BurnInto != null) GasHelper.MergeGasIntoDict(GasDictionary[gas.Key].BurnInto, gas.Value, ref modifier);
 

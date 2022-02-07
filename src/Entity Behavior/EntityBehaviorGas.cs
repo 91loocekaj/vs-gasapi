@@ -38,7 +38,7 @@ namespace GasApi
 
         public override void OnGameTick(float deltaTime)
         {
-            if (timeKeeper < 3)
+            if (timeKeeper < 1)
             {
                 timeKeeper += deltaTime;
                 return;
@@ -68,11 +68,11 @@ namespace GasApi
 
                     for (int a = 12; a < 15; a++)
                     {
-                        if (inv?[a]?.Itemstack?.Collectible.Durability > 1) inv[a].Itemstack.Collectible.DamageItem(entity.World, entity, inv[a], 31);
+                        if (inv?[a]?.Itemstack?.Collectible.Durability > 1 && inv[a].Itemstack.ItemAttributes?.IsTrue("gassysAntiCorrosion") != true) inv[a].Itemstack.Collectible.DamageItem(entity.World, entity, inv[a], 31);
                     }
                 }
 
-                if (acidAmount > 0.7) entity.ReceiveDamage(new DamageSource() { Type = EnumDamageType.Poison }, 1);
+                if (acidAmount > 0.9) entity.ReceiveDamage(new DamageSource() { Type = EnumDamageType.Poison }, 1);
             }
         }
 
@@ -90,25 +90,13 @@ namespace GasApi
             }
         }
 
-        public override void OnEntityReceiveDamage(DamageSource damageSource, ref float damage)
-        {
-            base.OnEntityReceiveDamage(damageSource, ref damage);
-
-            //Ignite in an explosion if in flammable gas
-
-            if (GasConfig.Loaded.FlammableGas && damageSource?.Source == EnumDamageSource.Explosion && gasHandler.IsVolatile(entity.ServerPos.AsBlockPos))
-            {
-                entity.Ignite();
-            }
-        }
-
         public bool HasFire()
         {
-            if (LeftHand != null && LeftHand.Collectible is BlockTorch && LeftHand.Block.LightHsv != null) return true;
+            if (LeftHand != null && LeftHand.Collectible is BlockTorch && LeftHand.Block.LightHsv?[2] > 0) return true;
 
-            if (RightHand != null && RightHand.Collectible is BlockTorch && RightHand.Block.LightHsv != null) return true;
+            if (RightHand != null && RightHand.Collectible is BlockTorch && RightHand.Block.LightHsv?[2] > 0) return true;
 
-            if (SelfStack != null && SelfStack.Collectible is BlockTorch && SelfStack.Block.LightHsv != null) return true;
+            if (SelfStack != null && SelfStack.Collectible is BlockTorch && SelfStack.Block.LightHsv?[2] > 0) return true;
 
             return false;
         }
